@@ -1,4 +1,4 @@
-# Comments
+# Comments [![Build Status](https://semaphoreapp.com/api/v1/projects/5a7b5072-d324-46d3-9994-0b265cbdf054/251633/badge.png)](https://semaphoreapp.com/deltaalpharho/comments)
 
 A commenting plugin for websites. The following technologies will be leveraged for this project.
 
