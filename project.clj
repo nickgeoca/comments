@@ -1,5 +1,5 @@
 (defproject comments "0.0.1-SNAPSHOT"
-  :description "Commenting Plugin for Websites"
+  :description "Comments Plugin for Websites"
   :min-lein-version "2.0.0"
   :url "http://104.131.30.116:3449"
   :license {:name "Eclipse Public License"
