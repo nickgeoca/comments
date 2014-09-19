@@ -1,4 +1,6 @@
-# Comments [![Build Status](https://semaphoreapp.com/api/v1/projects/5a7b5072-d324-46d3-9994-0b265cbdf054/251633/badge.png)](https://semaphoreapp.com/deltaalpharho/comments)
+# Comments [![Build Status](https://semaphoreapp.com/api/v1/projects/5a7b5072-d324-46d3-9994-0b265cbdf054/251633/badge.png)](https://semaphoreapp.com/deltaalpharho/comments) <a href="https://floobits.com/DeltaAlphaRho/groops/redirect">
+  <img alt="Floobits status" width="100" height="40" src="https://floobits.com/DeltaAlphaRho/comments.png"/>
+</a>
 
 A commenting plugin for websites. The following technologies will be leveraged for this project.
 
