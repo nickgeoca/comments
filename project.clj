@@ -1,7 +1,7 @@
 (defproject comments "0.0.1-SNAPSHOT"
   :description "Commenting Plugin for Websites"
   :min-lein-version "2.0.0"
-  :url "http://"
+  :url "http://104.131.30.116:3449"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :source-paths ["src/clj" "src/cljs"]
