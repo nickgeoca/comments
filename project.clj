@@ -1,5 +1,6 @@
 (defproject comments "0.0.1-SNAPSHOT"
   :description "Commentingx Plugin for Websites"
+  :min-lein-version "2.0.0"
   :url "http://"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
