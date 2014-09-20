@@ -23,9 +23,18 @@ Clone the repo using the URL in the side bar.
 ```
     $ cd comments
         
-    comments$ lein figwheel
+    comments$ lein server
 
 ```
+
+If you would also like to have interactive web development via FigWheel then you might open another terminal and run...
+
+```
+    $ cd comments
+
+    comments$ lein figwheel
+```
+
 
 After running the steps above you should be serving the project at http://localhost:3449/
 

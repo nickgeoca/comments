@@ -35,16 +35,18 @@
                                                     :optimizations :none
                                                     :source-map true}}]}}}
   :main comments.core
+  :uberjar-name "comments.jar"
 
   :figwheel {:http-server-root "public" ;; default and assumes "resources" 
              :server-port 3449 ;; default
              ;; :css-dirs ["public/resources/css"] ;; watch and update CSS
-             :ring-handler comments.core/secured-site
+             ;; :ring-handler comments.core/secured-site
              }
   
-  
+
   ;; :ring :handler comments.core/secured-site
-  ;;       :init comments.core/-main
-  ;;       :listener-class comments
+  ;; :init comments.core/-main
+  ;; :listener-class comments
   
-)
+  :aliases {"server"  ["trampoline" "run" "-m" "comments.core"]}  
+  )
