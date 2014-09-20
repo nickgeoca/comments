@@ -42,7 +42,7 @@
              ;; :css-dirs ["public/resources/css"] ;; watch and update CSS
              ;; :ring-handler comments.core/secured-site
              }
-  
+   
   ;; :ring :handler comments.core/secured-site
   ;; :init comments.core/-main
   ;; :listener-class comments
