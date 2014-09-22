@@ -172,7 +172,7 @@
                             :workflows [(workflows/interactive-form)]})
       ; required Ring middlewares
       ;;(wrap-verbose) ; log the request map
-      ;;(wrap-drop-www)
+      (wrap-drop-www)
       (wrap-keyword-params)
       (wrap-nested-params)
       (wrap-params)
