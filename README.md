@@ -25,6 +25,9 @@ Test: [test.c0mment.com](http://test.c0mment.com)
 ## Installation
 
 Clone the repo using the URL in the side bar.
+```
+~/workspace $ git clone https://github.com/DeltaAlphaRho/comments.git
+```
 
 ## Usage
 
