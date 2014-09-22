@@ -1,5 +1,6 @@
 (ns comments.core
-  (:require [cemerick.austin.repls :refer (browser-connected-repl-js)]
+  (:require [comments.redirect :refer (wrap-drop-www)]
+            [cemerick.austin.repls :refer (browser-connected-repl-js)]
             [net.cgrand.enlive-html :as html]
             [net.cgrand.reload :as reload]
             [compojure.handler :as handler]
@@ -45,7 +46,7 @@
 
 
 #_(defn get-friend-username [req] ; This doesn't smell right...
-  (:username (second (first (:authentications (:cemerick.friend/identity (:session req)))))))
+    (:username (second (first (:authentications (:cemerick.friend/identity (:session req)))))))
 
 ;;;destructure?
 ;;;get-in?
@@ -71,14 +72,14 @@
   [:body :div.navbar]
   [req]  
   [:ul [:li html/first-of-type]] (if (friend/identity req)
-                                   ;users see the app item in their menu
+                                        ;users see the app item in their menu
                                    (html/clone-for [[caption uri] navigation-items-user]
                                                    [:li] (if (= (req :uri) uri)
                                                            (html/set-attr :class "active")
                                                            identity)
                                                    [:li :a] (html/content caption)
                                                    [:li :a] (html/set-attr :href uri))
-                                   ;anonymous users do not see the app
+                                        ;anonymous users do not see the app
                                    (html/clone-for [[caption uri] navigation-items]
                                                    [:li] (if (= (req :uri) uri)
                                                            (html/set-attr :class "active")
@@ -97,7 +98,7 @@
                 "Contact" (html/do-> (html/content "Learn how to make contact")
                                      (html/wrap :h2))
                 (html/do-> (html/content  "Best check yo self, page not found!")
-                                   (html/wrap :h2 {:class "alert alert-warning" :style "text-align: center;"}))))
+                           (html/wrap :h2 {:class "alert alert-warning" :style "text-align: center;"}))))
 
 (html/deftemplate landing (io/resource "public/landing.html")
   [req]
@@ -110,7 +111,7 @@
 (html/deftemplate login (io/resource "public/landing.html")
   [req]
   [:body :div.navbar] (html/substitute (navbar req))
-  ;[:body :#content] (html/substitute (non-app-content req))
+                                        ;[:body :#content] (html/substitute (non-app-content req))
   [:body] (html/append (html/html [:script (browser-connected-repl-js)]))
   [:body :div.navbar :input] (html/set-attr :style "color: red")
   [:body :div.navbar :input.username] (html/set-attr :placeholder "Re-enter Email Address")
@@ -148,29 +149,31 @@
   (GET "/about" req (landing req))
   (GET "/contact" req (landing req))
   (GET "/welcome" req
-    ;(println "welcome req:" req)
-    ;(println "(:user (req :params))" (:username (req :params)))
-    ;(println "user name extraction: " (:authentications (:cemerick.friend/identity (:session req))))
-    (friend/authenticated  (welcome req)))
+                                        ;(println "welcome req:" req)
+                                        ;(println "(:user (req :params))" (:username (req :params)))
+                                        ;(println "user name extraction: " (:authentications (:cemerick.friend/identity (:session req))))
+       (friend/authenticated  (welcome req)))
   (GET "/login" req (login req))
   (GET "/logout" req (friend/logout* (resp/redirect "/")))
   (GET "/reregister" req (reregister req))
   (POST "/register" {{:keys [username password] :as params} :params :as req}
-    (if  (check-registration username password)
-      (let [user (create-user (select-keys params [:username :password]))]        
-        (swap! users #(-> % (assoc (str/lower-case username) user))) ; (println "user is " user)        
-        (friend/merge-authentication (resp/redirect "/welcome") user)) ; (println "register redirect req: " req)
-      (resp/redirect "/reregister") ))  
+        (if  (check-registration username password)
+          (let [user (create-user (select-keys params [:username :password]))]        
+            (swap! users #(-> % (assoc (str/lower-case username) user))) ; (println "user is " user)        
+            (friend/merge-authentication (resp/redirect "/welcome") user)) ; (println "register redirect req: " req)
+          (resp/redirect "/reregister") ))  
   (not-found (landing {:uri  "PageNotFound"}))) 
- 
+
 (def secured-site
   (-> unsecured-site
       (friend/authenticate {:allow-anon? true
                             :default-landing-uri "/welcome"
                             :credential-fn #(creds/bcrypt-credential-fn @users %)
                             :workflows [(workflows/interactive-form)]})
-      ; (wrap-verbose) ; Logging/Debugging
-      ; required Ring middlewares
+                                        ; (wrap-verbose) ; Logging/Debugging
+                                        ; required Ring middlewares
+      ;;(wrap-verbose) ; log the request map
+      (wrap-drop-www)
       (wrap-keyword-params)
       (wrap-nested-params)
       (wrap-params)
