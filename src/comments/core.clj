@@ -26,6 +26,8 @@
 (reload/auto-reload *ns*) ; To automatically reload Enlive templates -
                           ; wrap-reload used below in handler
 
+(js/alert "hi")
+
 ;;; Friend atom and accessor functions
 
 (def users (atom {"friend@gmail.com" {:username "friend@gmail.com" :password (creds/hash-bcrypt "clojure")}}))
