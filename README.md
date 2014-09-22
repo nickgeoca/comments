@@ -14,6 +14,14 @@ A commenting plugin for websites. The following technologies will be leveraged f
 * [Kioo](https://github.com/ckirkendall/kioo)
 * [http-kit](http://http-kit.org/)
 
+## Links
+
+Production: [c0mment.com](http://c0mment.com)
+
+Test: [test.c0mment.com](http://test.c0mment.com)
+
+*Note that pushing to [master](https://github.com/DeltaAlphaRho/comments/tree/master) deploys to production and pushing to [test](https://github.com/DeltaAlphaRho/comments/tree/test) deploys to the test container.
+
 ## Installation
 
 Clone the repo using the URL in the side bar.
