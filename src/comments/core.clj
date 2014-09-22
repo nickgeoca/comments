@@ -170,8 +170,7 @@
                             :default-landing-uri "/welcome"
                             :credential-fn #(creds/bcrypt-credential-fn @users %)
                             :workflows [(workflows/interactive-form)]})
-                                        ; (wrap-verbose) ; Logging/Debugging
-                                        ; required Ring middlewares
+      ; required Ring middlewares
       ;;(wrap-verbose) ; log the request map
       (wrap-drop-www)
       (wrap-keyword-params)
