@@ -6,7 +6,6 @@
             [compojure.handler :as handler]
             [compojure.route :refer (resources not-found)]
             [compojure.core :refer (GET POST defroutes)]
-            ring.adapter.jetty
             [ring.util.response :as resp]
             [ring.middleware.params :refer (wrap-params)]
             [ring.middleware.nested-params :refer (wrap-nested-params)]
@@ -19,12 +18,15 @@
             [clojure.set :as set]
             [cemerick.friend :as friend]
             (cemerick.friend [workflows :as workflows]
-                             [credentials :as creds]))
+                             [credentials :as creds])
+            [org.httpkit.server :refer [run-server]]
+            [clojure.tools.nrepl.server :as nrepl]
+            [cider.nrepl :as cider])
   (:import java.net.URI)
   (:gen-class))
 
 (reload/auto-reload *ns*) ; To automatically reload Enlive templates -
-                          ; wrap-reload used below in handler
+                                        ; wrap-reload used below in handler
 
 ;;; Friend atom and accessor functions
 
@@ -170,7 +172,7 @@
                             :default-landing-uri "/welcome"
                             :credential-fn #(creds/bcrypt-credential-fn @users %)
                             :workflows [(workflows/interactive-form)]})
-      ; required Ring middlewares
+                                        ; required Ring middlewares
       ;;(wrap-verbose) ; log the request map
       (wrap-drop-www)
       (wrap-keyword-params)
@@ -178,8 +180,3 @@
       (wrap-params)
       (wrap-session)
       (wrap-reload)))
-
-(defn -main []
-  (defonce ^:private server
-    (ring.adapter.jetty/run-jetty #'secured-site {:port 5000 :join? false}))
-  server)

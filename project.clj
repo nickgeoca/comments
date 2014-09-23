@@ -45,7 +45,7 @@
                                   [ring-mock "0.1.5"]]
                    :repl-options {:init-ns comments.core}}}
   
-  :aliases {"server"  ["trampoline" "run" "-m" "comments.core"]} 
+  :aliases {"server"  ["trampoline" "run" "-m" "comments.server"]} 
  
   :figwheel {:http-server-root "public"
              :server-port 3449}
