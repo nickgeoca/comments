@@ -63,6 +63,11 @@
 
 (defn get-navigation-caption [req] (navigation-items-invert (req :uri)))
 
+(html/defsnippet comment-description "public/comment-box.html"
+  [:div.detailBox]
+  [desc]
+  [:p.taskDescription] (html/content desc))
+
 (html/defsnippet auth-profile (io/resource "public/welcome.html")
   [:body :div.user]
   [req]
@@ -104,8 +109,7 @@
   [req]
   [:body :div.navbar] (html/substitute (navbar req))
   [:body :#content] (html/substitute (non-app-content req))
-  [:body] (html/append (html/html [:script (browser-connected-repl-js)]))
-  )
+  [:body] (html/append (html/html [:script (browser-connected-repl-js)])))
 
 ;;; Default page for erroneous logins 
 (html/deftemplate login (io/resource "public/landing.html")
@@ -133,6 +137,15 @@
            (html/html [:script (browser-connected-repl-js)]))
   [#{:span.user}] (html/content (trim-email-address (get-friend-username req) )))
 
+;;; Comment box template
+(html/deftemplate comments "public/welcome.html"
+  [req]
+  [:body :div.navbar] (html/substitute (navbar req))
+  [:div.container :h1] (html/substitute nil)
+  [:body] (html/append
+            (html/html (comment-description "Thing we are commenting on..."))))
+
+
 ;;; Logging/Debugging
 (defn log-request [req]
   (println ">>>>" req)) 
@@ -148,6 +161,7 @@
   (GET "/" req (landing req))
   (GET "/about" req (landing req))
   (GET "/contact" req (landing req))
+  (GET "/comments" req (comments req))
   (GET "/welcome" req
                                         ;(println "welcome req:" req)
                                         ;(println "(:user (req :params))" (:username (req :params)))
