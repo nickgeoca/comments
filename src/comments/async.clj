@@ -1,4 +1,4 @@
-(ns groops.async
+(ns comments.async
   (:require [org.httpkit.server :refer [with-channel on-close on-receive send!]]
             [cheshire.core :refer [generate-string]]))
 
@@ -34,7 +34,7 @@
 ;; (def noun-subj "cd")
 ;; (def adj-subj "ef")
 ;;(defn generate-life-qoute  (str "Life is like a " noun-container " of " adj-subj " " noun-subj "... eese nice!"))
-(def generate-life-qoute (atom"test345"))
+(def generate-life-qoute "test345")
 
 (defn send-life-qoute []
   (let [life-qoute     (generate-life-qoute)

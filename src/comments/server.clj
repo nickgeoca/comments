@@ -1,6 +1,6 @@
 (ns comments.server
   (:require [comments.core :refer [secured-site]]
-            [comments.async :refer [send-loop]]
+            [comments.async :as async]
             [org.httpkit.server :refer [run-server]]
             [clojure.tools.nrepl.server :as nrepl]
             [cider.nrepl :as cider]))

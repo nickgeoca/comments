@@ -1,6 +1,6 @@
 (ns comments.core
   (:require [comments.redirect :refer (wrap-drop-www)]
-            [comments.async    :refer (ws)]
+            [comments.async :as async]
             [cemerick.austin.repls :refer (browser-connected-repl-js)]
             [net.cgrand.enlive-html :as html]
             [net.cgrand.reload :as reload]
