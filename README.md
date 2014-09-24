@@ -47,7 +47,7 @@ If you would also like to have interactive web development via FigWheel then you
 ```
 
 
-After running the steps above you should be serving the project at http://localhost:3449/
+After running the steps above you should be serving the project at [http://localhost:5000/](http:localhost:5000/)
 
 ## License
 
