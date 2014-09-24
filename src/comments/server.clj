@@ -1,6 +1,6 @@
 (ns comments.server
   (:require [comments.core :refer [secured-site]]
-            [comments.async :as async]
+            [comments.websocket :as websocket]
             [org.httpkit.server :refer [run-server]]
             [clojure.tools.nrepl.server :as nrepl]
             [cider.nrepl :as cider]))
@@ -22,9 +22,6 @@
   (try
     (println "Starting nrepl on port" nrepl-port)
     (start-nrepl)
-
-    (println "Starting websocket client loop")
-    (async/send-loop)    
     
     (println "Starting webserver on port" http-port)
     (start-webserver)
