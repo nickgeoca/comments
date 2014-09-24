@@ -1,5 +1,6 @@
 (ns comments.core
   (:require [comments.redirect :refer (wrap-drop-www)]
+            [comments.async    :refer (ws)]
             [cemerick.austin.repls :refer (browser-connected-repl-js)]
             [net.cgrand.enlive-html :as html]
             [net.cgrand.reload :as reload]
@@ -147,6 +148,7 @@
 ;;; Compjure routes, site handler, ring server
 (defroutes unsecured-site
   (resources "/")
+  (GET "/ws" [] async/ws)
   (GET "/" req (landing req))
   (GET "/about" req (landing req))
   (GET "/contact" req (landing req))
