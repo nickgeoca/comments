@@ -149,8 +149,9 @@
 (defroutes unsecured-site
   (resources "/")
   ;;(handler/context "/comments" [])
-  (GET "/comments" req websocket/ws-comment-page)
-  (POST "/comments" req websocket/ws-comment-newmsg)
+  (GET "/comments/ws" req websocket/ws-comment-page)
+  (POST "/comments/ws" req websocket/ws-comment-newmsg)
+  (GET "/comments" req (comments req))
   (GET "/" req (landing req))
   (GET "/about" req (landing req))
   (GET "/contact" req (landing req))
