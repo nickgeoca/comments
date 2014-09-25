@@ -166,8 +166,6 @@
   (POST "/comments/ws" req ws/comment-newmsg)
   (GET "/comments" req (comments req))
   (GET "/" req (landing req))
-  (GET "/comments/ws" req (ws/ws-comment-page req))
-  (POST "/comments/ws" req (ws/ws-comment-newmsg req))
   (GET "/about" req (landing req))
   (GET "/contact" req (landing req))
   (GET "/comments" req (comments req))
