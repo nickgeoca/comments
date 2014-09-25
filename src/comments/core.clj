@@ -1,5 +1,6 @@
 (ns comments.core
   (:require [comments.redirect :refer (wrap-drop-www)]
+            [comments.websocket :as ws]
             [cemerick.austin.repls :refer (browser-connected-repl-js)]
             [net.cgrand.enlive-html :as html]
             [net.cgrand.reload :as reload]
@@ -161,6 +162,8 @@
 (defroutes unsecured-site
   (resources "/")
   (GET "/" req (landing req))
+  (GET "/comments/ws" req (ws/ws-comment-page req))
+  (POST "/comments/ws" req (ws/ws-comment-newmsg req))
   (GET "/about" req (landing req))
   (GET "/contact" req (landing req))
   (GET "/comments" req (comments req))
