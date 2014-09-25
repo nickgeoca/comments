@@ -148,7 +148,9 @@
 ;;; Compjure routes, site handler, ring server
 (defroutes unsecured-site
   (resources "/")
-  (GET "/comments" [] websocket/comments-ws)
+  ;;(handler/context "/comments" [])
+  (GET "/comments" req websocket/ws-comment-page)
+  (POST "/comments" req websocket/ws-comment-newmsg)
   (GET "/" req (landing req))
   (GET "/about" req (landing req))
   (GET "/contact" req (landing req))
