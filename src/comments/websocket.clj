@@ -12,9 +12,12 @@
       (doseq [client clients]
         (send! client msg false)))))
 
-(defn ws-comment-newmsg [req]
+(defn comment-newmsg [req]
   (with-channel req channel
-    (println req) (println comment-box) (println channel) (println (:headers req))
+    (println req)
+    (println comment-box)
+    (println channel)
+    (println (:headers req))
     (let [sender-msg  (read-string (:headers req))
           sender-info (get comment-box channel)]
                             ;;;;
@@ -25,7 +28,7 @@
       (println "on-receive channel:" channel " data:" sender-msg)
       (println "chat-ws comment-box" @comment-box))))
 
-(defn ws-comment-page [req]
+(defn comment-page [req]
   (with-channel req channel
     (swap! comment-box assoc channel {:name nil :email nil :room nil})  ;; Keep track of new client. Add to data-struct
     (doseq [msg (data/get-chat-history "http://c0mment.com")] (send! channel msg false))     ;; Send new client chat history
