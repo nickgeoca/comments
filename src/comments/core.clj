@@ -163,7 +163,6 @@
   (resources "/")
   ;;(handler/context "/comments" [])
   (GET "/comments/ws" req ws/comment-page)
-  (POST "/comments/ws" req ws/comment-newmsg)
   (GET "/comments" req (comments req))
   (GET "/" req (landing req))
   (GET "/about" req (landing req))
